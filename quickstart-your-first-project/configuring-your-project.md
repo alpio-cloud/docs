@@ -13,10 +13,15 @@ alpio projects create
 After following the instructions in the CLI (press the `ENTER` key), your favorite code editor should open to a configuration file.
 
 {% hint style="info" %}
-If the configuration file does not open in your preferred code editor, make sure the [global environment variable `EDITOR`](https://bash.cyberciti.biz/guide/$EDITOR\_variable) is set correctly for your code editor.
+If the configuration file does not open in your preferred code editor, make sure the [global environment variable `EDITOR`](https://bash.cyberciti.biz/guide/$EDITOR\_variable) is set correctly for your code editor.\
+If you are using VSCode, you can set the variable to: `code --wait`
 {% endhint %}
 
 The configuration file uses the JSON format, and is generated from a template containing one data model, and one API endpoint.
+
+{% hint style="success" %}
+To help you edit your project configuration file correctly, Alpio project configuration files use [JSON Schema](https://json-schema.org/). If your code editor supports it natively, you will have instant validation & autocompletion.
+{% endhint %}
 
 ### Giving a name to your project
 
@@ -344,7 +349,8 @@ Our entire project configuration should look something like this:
 
 ```json
 {
-  "name": "",
+  "$schema": "https://storage.googleapis.com/alpio/schema.json",
+  "name": "YOUR PROJECT NAME",
   "models": {
     "Planet": {
       "primary_key": "id",
@@ -356,7 +362,8 @@ Our entire project configuration should look something like this:
           "default": "uuid()"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "nullable": false
         },
         "mass": {
           "type": "integer"
@@ -385,7 +392,8 @@ Our entire project configuration should look something like this:
           "default": "uuid()"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "nullable": false
         },
         "galaxy": {
           "type": "reference",
