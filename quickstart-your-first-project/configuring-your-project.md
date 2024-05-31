@@ -64,7 +64,7 @@ You can then add additional properties to the `Planet` data model. Let's add the
           "type": "array",
           "items": {
             "type": "string"
-          },
+          }
         },
         "discovered_at" : {
           "type": "timestamp"
