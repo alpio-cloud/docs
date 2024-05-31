@@ -39,6 +39,8 @@ You can start by giving a name to your project, by giving a value to the `name` 
 }
 ```
 
+That's all you need to have a deployable backend! If you wanted to, you could close the configuration file, and deploy your project right away. Although it would be a bit limited, your API would work right away.
+
 ## Data modeling
 
 ### Adding additional properties to an existing model
