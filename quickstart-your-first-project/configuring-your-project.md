@@ -352,6 +352,10 @@ Our entire project configuration should look something like this:
         },
         "discovered_at": {
           "type": "timestamp"
+        },
+        "galaxy": {
+          "type": "reference",
+          "reference": "Galaxy"
         }
       }
     },
@@ -367,10 +371,6 @@ Our entire project configuration should look something like this:
         "name": {
           "type": "string",
           "nullable": false
-        },
-        "galaxy": {
-          "type": "reference",
-          "reference": "Galaxy"
         }
       }
     }
