@@ -264,8 +264,6 @@ We also used a reference to indicate that the request will also return a Planet 
 }
 ```
 
-This will make sure the endpoint doesn't accept an `id` property in the request's body.
-
 ### Adding additional endpoints for our Galaxy model
 
 We can do the same thing that we did for our Planet model, and create three endpoints for Galaxy model, under the `/galaxies` path.
