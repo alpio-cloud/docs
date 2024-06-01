@@ -190,8 +190,7 @@ Let's now add a query parameter to this new endpoint to only retrieve habitable 
         "name": "habitable",
         "in": "query",
         "type": "reference",
-        "reference": "Planet/habitable",
-        "default": false
+        "reference": "Planet/habitable"
       }
     ],
     "responses": {
@@ -404,6 +403,20 @@ Our entire project configuration should look something like this:
                 }
               }
             }
+          },
+          "post": {
+            "operationId": "createPlanet",
+            "body": {
+              "type": "reference",
+              "reference": "Planet"
+            },
+            "responses": {
+              "201": {
+                "description": "Successful creation",
+                "type": "reference",
+                "reference": "Planet"
+              }
+            }
           }
         },
         "paths": {
@@ -422,20 +435,6 @@ Our entire project configuration should look something like this:
                   "200": {
                     "type": "reference",
                     "description": "A successful response",
-                    "reference": "Planet"
-                  }
-                }
-              },
-              "post": {
-                "operationId": "createPlanet",
-                "body": {
-                  "type": "reference",
-                  "reference": "Planet"
-                },
-                "responses": {
-                  "201": {
-                    "description": "Successful creation",
-                    "type": "reference",
                     "reference": "Planet"
                   }
                 }
