@@ -169,6 +169,7 @@ In the template configuration, we already have a GET endpoint defined for us, wh
     },
     "paths": {
       // subpath endpoints go here
+      "/:id": { ... }
     }
   }
 }
