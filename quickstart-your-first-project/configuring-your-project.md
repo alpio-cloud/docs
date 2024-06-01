@@ -348,9 +348,9 @@ Our entire project configuration should look something like this:
           "type": "array",
           "items": {
             "type": "string"
-          },
+          }
         },
-        "discovered_at" : {
+        "discovered_at": {
           "type": "timestamp"
         }
       }
