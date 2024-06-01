@@ -1,12 +1,32 @@
+---
+description: Learn how to make API requests to query your project's data
+---
+
 # 👩‍💻 Using your project
 
-Now that we've deployed our project, and created an API key to authenticate ourselves, let's use our API and create some data.
+Now that we've deployed our project, and [created an API key](deploying-your-project.md#creating-an-api-key) to authenticate ourselves, let's use our API and create some data.
+
+## Listing galaxies
+
+Although we don't have any data at the moment, let's list our galaxies to make sure everything is working as expected. Let's make a `GET` request to do so. You can use any HTTP client to do so, like curl, or Postman.
+
+```bash
+curl 'https://YOUR_PROJECT_URL/galaxies' \
+--request GET \
+--header 'x-api-key: YOUR_API_KEY'
+```
+
+If everything is working well, you should get an empty array in response:
+
+```
+[]
+```
 
 ## Creating a galaxy
 
-Let's make a `POST` request to create our first galaxy. You can use any HTTP client to do so, like curl, or Postman.
+Let's make a `POST` request to create our first galaxy.&#x20;
 
-<pre class="language-bash"><code class="lang-bash">curl https://<a data-footnote-ref href="#user-content-fn-1">YOUR_PROJECT_URL</a>/galaxies \
+<pre class="language-bash"><code class="lang-bash">curl 'https://<a data-footnote-ref href="#user-content-fn-1">YOUR_PROJECT_URL</a>/galaxies' \
 --request POST \
 --header 'x-api-key: <a data-footnote-ref href="#user-content-fn-2">YOUR_API_KEY</a>' \
 --header 'content-type: application/json' \
@@ -22,12 +42,14 @@ This should return a galaxy with an auto-generated `id` and a name set to "Milky
 }
 ```
 
+You can try to run the first request to see that our galaxy is now present in the list of galaxies.
+
 ## Creating a planet
 
 We can also create a Planet; let's create planet Earth:
 
 ```bash
-curl https://YOUR_PROJECT_URL/planets \
+curl 'https://YOUR_PROJECT_URL/planets' \
 --request POST \
 --header 'x-api-key: YOUR_API_KEY' \
 --header 'content-type: application/json' \
@@ -78,13 +100,13 @@ This allows us to link a Planet to a Galaxy, directly upon creation. By re-using
 --request POST \
 --header 'x-api-key: YOUR_API_KEY' \
 --header 'content-type: application/json' \
---data '{ \
+--data '{
   "name": "Neptune",
   "mass": 1024,
   "habitable": false,
   "discovered_at": "1846-09-23T00:00:00.000Z",
   "galaxy": {
-    "id": "<a data-footnote-ref href="#user-content-fn-3">GALAXY_ID</a>
+    "id": "<a data-footnote-ref href="#user-content-fn-3">GALAXY_ID</a>"
   }
 }'
 </code></pre>
