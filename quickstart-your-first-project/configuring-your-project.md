@@ -242,28 +242,6 @@ To define the schema the endpoint should accept through the request's `body` par
 
 We also used a reference to indicate that the request will also return a Planet data object upon success.
 
-```json
-{
-  "/planets": {
-    "methods": {
-      "get": {
-        // "GET" method description
-      },
-      "post": {
-        "operationId": "createPlanet",
-        "body": {
-          "type": "reference",
-          "reference": "Planet"
-        },
-        "responses": {
-          // responses configuration
-        }
-      }
-    }
-  }
-}
-```
-
 ### Adding additional endpoints for our Galaxy model
 
 We can do the same thing that we did for our Planet model, and create three endpoints for Galaxy model, under the `/galaxies` path.
