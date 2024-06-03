@@ -137,7 +137,7 @@ Let's add a property to our **Planet** data model to indicate in what galaxy the
 }
 ```
 
-We have now added a new property called `galaxy` to our Planet model. It is defined as a **reference** to the Galaxy data model. A reference is a special type of property (in addition to the usual types `string, integer, float, boolean, timestamp, array`) designed to **reference another part of your data model**. You can reference an entire data model, or only one its properties. This allows you to avoid duplicating different parts of your schema when it is required, and helps you make sure that the matching types are always the same. For example, if the `x` property of your model `A` is defined as a reference to the `y` property of another model `B`, you will make sure that `A.x` and `B.y` are always of the same type, even if you later change the type of `B.y`.
+We have now added a new property called `galaxy` to our Planet model. It is defined as a **reference** to the Galaxy data model. A reference is a special type of property (in addition to the usual types `string, integer, float, boolean, timestamp, array`) designed to **reference another part of your data model**. You can reference an entire data model, or only one its properties. This allows you to avoid duplicating different parts of your schema when it is required, and helps you make sure that the matching types are always the same. For example, if  property `x` of your model `A` is defined as a reference to the  property `y` of another model `B`, you will guaranteed that `A.x` and `B.y` are always of the same type, even if you later change `B.y`'s type.
 
 {% hint style="info" %}
 References are **case-sensitive.**
