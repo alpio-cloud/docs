@@ -6,7 +6,7 @@ description: Learn how to make API requests to query your project's data
 
 Now that we've deployed our project, and [created an API key](deploying-your-project.md#creating-an-api-key) to authenticate ourselves, let's use our API and create some data.
 
-## Listing galaxies
+## Listing galaxies & planets
 
 Although we don't have any data at the moment, let's list our galaxies to make sure everything is working as expected. Let's make a `GET` request to do so. You can use any HTTP client to do so, like curl, or Postman.
 
@@ -21,6 +21,16 @@ If everything is working well, you should get an empty array in response:
 ```
 []
 ```
+
+Let's do the same thing for planets:
+
+```bash
+curl 'https://YOUR_PROJECT_URL/planets' \
+--request GET \
+--header 'x-api-key: YOUR_API_KEY'
+```
+
+You should see the same result.
 
 ## Creating a galaxy
 
