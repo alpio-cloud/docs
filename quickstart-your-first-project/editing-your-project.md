@@ -137,3 +137,106 @@ This should return the following result:
 ```
 
 We can retrieve a galaxy and all its related planets in one query. Victory!
+
+## Linking an entity to another one
+
+When we created planet Earth in our data model, we somehow forgot to link it to a galaxy. Now that we have seen how to query related entities, let's say how we can link two related entities together.
+
+We know that our Planet model features a `galaxy` property, which is an object reference to a Galaxy model. If we could pass an object containing an existing Galaxy's id in a request to update a Planet, we could link the two together.
+
+Let's edit our API model, and add a `PATCH` request under the path `/planets/:id`
+
+```json
+{
+  "paths": {
+    // ... other paths
+    "/planets": {
+      "paths": {
+        "/:id": {
+          "methods": {
+            // ... other methods previously defined
+            "patch": {
+              "operationId": "updatePlanet",
+              "body": {
+                "type": "reference",
+                "reference": "Planet"
+              },
+              "responses": {
+                "200": {
+                  "type": "reference",
+                  "reference": "Planet",
+                  "description": "A successful response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Once you have saved and deployed, we'll be able to try our new method. Let's finally link planet Earth to the Milky Way:
+
+<pre class="language-bash"><code class="lang-bash">curl 'https://<a data-footnote-ref href="#user-content-fn-1">YOUR_PROJECT_URL</a>/planets/PLANET_ID' \
+--request PATCH \
+--header 'x-api-key: <a data-footnote-ref href="#user-content-fn-2">YOUR_API_KEY</a>' \
+--header 'content-type: application/json' \
+--data '{"galaxy": {"id": "GALAXY_ID"}}'
+</code></pre>
+
+You should see the following result:
+
+```json5
+{
+  "id":"PLANET_ID",
+  "mass":5972,
+  "name":"Earth",
+  "habitable":true,
+  "atmosphere":[],
+  "discovered_at":"0001-01-01T00:00:00.000Z",
+  "galaxyId":"GALAXY_ID" // This should now be set to the Milky Way's id
+}
+```
+
+We can finally make a request to retrieve the Miky Way and its linked planets:
+
+```bash
+curl 'https://YOUR_PROJECT_URL/planets/GALAXY_ID?include_planets=true' \
+--request GET \
+--header 'x-api-key: YOUR_API_KEY'
+```
+
+You should see the following result:
+
+```json
+{
+  "id":"GALAXY_ID",
+  "name":"Milky Way",
+  "planets":[
+    {
+      "id":"NEPTUNE_ID",
+      "mass":1024,
+      "name":"Neptune",
+      "habitable":false,
+      "atmosphere":[],
+      "discovered_at":"1846-09-23T00:00:00.000Z",
+      "galaxyId":"GALAXY_ID"
+    },
+    {
+      "id":"EARTH_ID",
+      "mass":5972,
+      "name":"Earth",
+      "habitable":true,
+      "atmosphere":[],
+      "discovered_at":"0001-01-01T00:00:00.000Z",
+      "galaxyId":"GALAXY_ID"
+    }
+  ]
+}
+```
+
+[^1]: Replace this with your project's URL
+
+[^2]: Replace this your API key
