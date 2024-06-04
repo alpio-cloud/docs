@@ -203,7 +203,7 @@ You should see the following result:
 We can finally make a request to retrieve the Miky Way and its linked planets:
 
 ```bash
-curl 'https://YOUR_PROJECT_URL/planets/GALAXY_ID?include_planets=true' \
+curl 'https://YOUR_PROJECT_URL/galaxies/GALAXY_ID?include_planets=true' \
 --request GET \
 --header 'x-api-key: YOUR_API_KEY'
 ```
